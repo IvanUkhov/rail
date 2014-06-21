@@ -57,7 +57,35 @@ Rail. Organize your code according to the following convention:
 In addition, `app/views/layouts/application.html.haml` will be used for
 rendering the root of your application (both `/` and `/index.html`).
 
-Usage examples can be found [here](https://github.com/IvanUkhov/type-works),
+Run [Rake](https://github.com/jimweirich/rake) to see the available tasks:
+```bash
+$ rake -T
+rake assets  # Precompile assets
+rake server  # Start server
+```
+
+`rake server` starts up a Web server; if none is specified in `Gemfile`,
+[WEBrick](http://ruby-doc.org/stdlib-2.1.2/libdoc/webrick/rdoc/WEBrick.html)
+will be fired up.
+
+`rake assets` precompiles your assets and stores them in `/public`. You should
+explicitly tell Rail what should be precompiled. It can be done in
+`config/application.rb` as exemplified below:
+```ruby
+module MyProject
+  class Application < Rail::Application
+    config.precompile << 'application.css'
+    config.precompile << 'application.js'
+    config.precompile << 'index.html'
+  end
+end
+```
+
+Note that the files in `/public` have a high priority than the one of the files
+in `/app`, and, therefore, the server will try to served from `/public` first.
+
+Additional usage examples can be found
+[here](https://github.com/IvanUkhov/type-works),
 [here](https://github.com/IvanUkhov/photography), and
 [here](https://github.com/IvanUkhov/liu-profile).
 
