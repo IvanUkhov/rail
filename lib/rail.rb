@@ -23,7 +23,7 @@ module Rail
   private
 
   def self.build_env
-    string = ENV['RAIL_ENV'] || 'development'
+    string = ENV['RAIL_ENV'] ? ENV['RAIL_ENV'].dup : 'development'
 
     string.singleton_class.class_eval do
       define_method(:method_missing) do |name, *arguments, &block|

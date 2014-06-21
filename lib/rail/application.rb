@@ -7,7 +7,8 @@ module Rail
 
     def initialize
       # config/application.rb
-      config.root = File.expand_path('..', caller[0].sub(/:.*/, ''))
+      config.root ||= File.expand_path('..', caller[0].sub(/:.*/, ''))
+      config.compress = Rail.env.production? unless config.to_h.key?(:compress)
 
       @browser = Browser.new(self)
       @pipeline = Pipeline.new(self)
