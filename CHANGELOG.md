@@ -1,4 +1,4 @@
-## Typekit 0.1.0 (June 21, 2014)
+## Typekit 0.0.2 (June 21, 2014)
 * The first actual release. A happy union of
   [CoffeeScript](http://coffeescript.org/),
   [Haml](http://haml.info/),
