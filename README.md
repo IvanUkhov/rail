@@ -1,4 +1,4 @@
-# Rail
+# Rail [![Gem Version](https://badge.fury.io/rb/rail.svg)](http://badge.fury.io/rb/rail) [![Dependency Status](https://gemnasium.com/IvanUkhov/rail.svg)](https://gemnasium.com/IvanUkhov/rail) [![Build Status](https://travis-ci.org/IvanUkhov/rail.svg?branch=master)](https://travis-ci.org/IvanUkhov/rail)
 A light framework for front-end development inspired by
 [Rails](http://rubyonrails.org/). It is solely based on
 [Sprockets](https://github.com/sstephenson/sprockets) and includes the
