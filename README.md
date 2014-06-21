@@ -1,5 +1,6 @@
 # Rail
-Less is more.
+A light framework for front-end development inspired by
+[Rails](http://rubyonrails.org/).
 
 ## Contributing
 1. [Fork](https://help.github.com/articles/fork-a-repo) the project.
