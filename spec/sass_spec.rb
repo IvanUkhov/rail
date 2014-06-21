@@ -1,0 +1,31 @@
+require 'minitest/spec'
+require 'minitest/autorun'
+
+require_relative 'project/controller'
+
+describe Rail::Application do
+  it 'handles uncompressed Sass assests' do
+    controller = Controller.new do
+      config.compress = false
+    end
+    body = controller.process('/application.css')
+    assert_equal body.strip, <<-BODY.strip
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-family: 'Benton Modern Display'; }
+    BODY
+  end
+
+  it 'handles compressed Sass assets' do
+    controller = Controller.new do
+      config.compress = true
+    end
+    body = controller.process('/application.css')
+    assert_equal body.strip, <<-BODY.strip
+*{margin:0;padding:0}body{font-family:'Benton Modern Display'}
+    BODY
+  end
+end
