@@ -42,9 +42,10 @@ module Rail
       if compress?
         environment.js_compressor = :uglify
         environment.css_compressor = :scss
-        # TODO: Find a per-instance way to configure HAML.
-        Haml::Options.defaults[:ugly] = true
       end
+
+      # TODO: Find a per-instance way to configure HAML.
+      Haml::Options.defaults[:ugly] = compress?
 
       helpers.each do |helper|
         environment.context_class.class_eval do
