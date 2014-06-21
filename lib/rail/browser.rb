@@ -16,7 +16,7 @@ module Rail
     end
 
     def accept?(env)
-      path = Server.extract_path(env)
+      path = Support.extract_path(env)
       !path.empty? && File.exist?(File.join(root, 'public', path))
     end
   end

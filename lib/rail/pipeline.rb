@@ -10,7 +10,7 @@ module Rail
     end
 
     def call(env)
-      path = Server.extract_path(env)
+      path = Support.extract_path(env)
 
       case path
       when ''
