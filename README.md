@@ -2,7 +2,7 @@
 Less is more.
 
 ## Contributing
-1. [Fork](https://help.github.com/articles/fork-a-repo) this repository.
+1. [Fork](https://help.github.com/articles/fork-a-repo) the project.
 2. Create a branch for your feature (`git checkout -b awesome-feature`).
 3. Implement your feature (`vim`).
 4. Commit your changes (`git commit -am 'Implemented an awesome feature'`).
