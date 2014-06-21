@@ -2,15 +2,16 @@ module Rail
   class Pipeline
     extend Forwardable
 
-    attr_reader :host
-    def_delegators :host, :root, :gems, :helpers, :compress?
+    def_delegators :@host, :root, :gems, :helpers, :compress?
 
     def initialize(host)
       @host = host
     end
 
-    def call(env)
-      path = Support.extract_path(env)
+    def process(request)
+      Thread.current[:request] = request
+
+      path = request.path
 
       case path
       when ''
@@ -25,11 +26,11 @@ module Rail
       [ code, {}, body ]
     end
 
+    private
+
     def sprockets
       @sprockets ||= build_sprockets
     end
-
-    private
 
     def build_sprockets
       environment = Sprockets::Environment.new
@@ -48,6 +49,12 @@ module Rail
       helpers.each do |helper|
         environment.context_class.class_eval do
           include helper
+        end
+      end
+
+      environment.context_class.class_eval do
+        define_method(:request) do
+          Thread.current[:request]
         end
       end
 

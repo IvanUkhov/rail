@@ -14,7 +14,8 @@ module Rail
     end
 
     def call(env)
-      (browser.accept?(env) ? browser : pipeline).call(env)
+      request = Request.new(env)
+      (browser.accept?(request) ? browser : pipeline).process(request)
     end
 
     def helpers
