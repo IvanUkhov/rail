@@ -14,7 +14,7 @@ module Rail
       path = request.path
 
       case path
-      when ''
+      when '', 'index.html'
         path = 'layouts/application'
       end
 

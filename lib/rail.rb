@@ -21,6 +21,12 @@ module Rail
     @env ||= build_env
   end
 
+  def self.applications
+    ObjectSpace.each_object(Class).select do |klass|
+      klass < Application
+    end
+  end
+
   private
 
   def self.build_env
