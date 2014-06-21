@@ -2,14 +2,19 @@ module Rail
   class Application
     extend Forwardable
 
-    def_delegator :config, :root
+    attr_reader :browser, :pipeline
+    def_delegators :config, :root, :compress?
 
     def initialize
       # config/application.rb
-      config.root = File.expand_path('../..', caller[0].sub(/:.*/, ''))
+      config.root = File.expand_path('..', caller[0].sub(/:.*/, ''))
+
+      @browser = Browser.new(self)
+      @pipeline = Pipeline.new(self)
     end
 
     def call(env)
+      (browser.accept?(env) ? browser : pipeline).call(env)
     end
 
     def helpers

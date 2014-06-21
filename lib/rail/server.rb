@@ -9,5 +9,9 @@ module Rail
 
       super(options)
     end
+
+    def self.extract_path(env)
+      env['PATH_INFO'].sub(/^\//, '').sub(/\?.*$/, '')
+    end
   end
 end

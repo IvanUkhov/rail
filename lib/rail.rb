@@ -7,6 +7,8 @@ require 'uglifier'
 require 'sprockets'
 
 require_relative 'rail/application'
+require_relative 'rail/browser'
+require_relative 'rail/pipeline'
 require_relative 'rail/server'
 require_relative 'rail/version'
 
