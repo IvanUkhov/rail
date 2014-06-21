@@ -3,7 +3,7 @@ module Rail
     extend Forwardable
 
     attr_reader :host
-    def_delegators :host, :root, :helpers, :compress?
+    def_delegators :host, :root, :gems, :helpers, :compress?
 
     def initialize(host)
       @host = host
@@ -34,10 +34,7 @@ module Rail
     def build_sprockets
       environment = Sprockets::Environment.new
 
-      [ File.join(root, 'app/assets/javascripts'),
-        File.join(root, 'app/assets/stylesheets'),
-        File.join(root, 'app/views')
-      ].each do |directory|
+      paths.each do |directory|
         environment.append_path(directory)
       end
 
@@ -55,6 +52,26 @@ module Rail
       end
 
       environment
+    end
+
+    def paths
+      (application_paths + gems.map { |name| gem_paths(name) }).flatten
+    end
+
+    def application_paths
+      [
+        File.join(root, 'app/assets/javascripts'),
+        File.join(root, 'app/assets/stylesheets'),
+        File.join(root, 'app/views')
+      ]
+    end
+
+    def gem_paths(name)
+      gem = Gem::Specification.find_by_name(name)
+      [
+        File.join(gem.gem_dir, 'lib/assets/javascripts'),
+        File.join(gem.gem_dir, 'lib/assets/stylesheets')
+      ]
     end
   end
 end
