@@ -32,9 +32,9 @@ module Rail
     private
 
     def load_helpers
-      Dir[File.join(root, 'app/helpers/*.rb')].each do |file|
+      Dir[File.join(root, 'app/helpers/*.rb')].map do |file|
         require file
-        File.basename(file).split(/\s+/).map(&:capitalize).join.to_sym
+        Support.constantize(File.basename(file, '.rb'))
       end
     end
 
