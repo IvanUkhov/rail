@@ -8,8 +8,10 @@ Gem::Specification.new do |spec|
   spec.version       = Rail::VERSION
   spec.authors       = [ 'Ivan Ukhov' ]
   spec.email         = [ 'ivan.ukhov@gmail.com' ]
-  spec.summary       = 'A light framework for front-end development'
-  spec.description   = 'A light framework for front-end development'
+  spec.summary       = 'A light framework for front-end development ' \
+                       'inspired by Rails'
+  spec.description   = 'A light framework for front-end development ' \
+                       'closely following the conventions of Ruby on Rails.'
   spec.homepage      = 'https://github.com/IvanUkhov/rail'
   spec.license       = 'MIT'
 
