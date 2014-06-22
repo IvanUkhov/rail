@@ -47,16 +47,42 @@ end
 Feel free to replace `MyProject` with the name of your project. That’s it.
 
 ## Usage
-Rail closely follows Rails. If you know Rails, you already know how to use
-Rail. Organize your code according to the following convention:
-* scripts in `app/assets/javascripts`,
-* styles in `app/assets/stylesheets`,
-* views in `app/views`, and
-* helpers in `app/helpers`.
+Rail closely follows Rails. If you know Rails, you already know Rail.
+
+### Structure
+Organize your code according to the following convention:
+* `app/assets/javascripts` for scripts,
+* `app/assets/stylesheets` for styles,
+* `app/views` for templates,
+* `app/helpers` for helper modules, and
+* `public` for other static content.
 
 In addition, `app/views/layouts/application.html.haml` will be used for
 rendering the root of your application (both `/` and `/index.html`).
 
+### Configuration
+As with Rails, Rail is configured inside `config/application.rb`:
+```ruby
+module MyProject
+  class Application < Rail::Application
+    # Import assets from other gems:
+    config.gems << 'turbolinks'
+
+    # Precompile assets using `rake assets`:
+    config.precompile << 'application.css'
+    config.precompile << 'application.js'
+    config.precompile << 'index.html'
+
+    # Compress assets:
+    config.compress = true
+  end
+end
+```
+
+If `config.compress` is not specified, it is implicitly set to
+`ENV['RAIL_ENV'] == 'production'`.
+
+### Commands
 Run [Rake](https://github.com/jimweirich/rake) to see the available tasks:
 ```bash
 $ rake -T
@@ -68,22 +94,12 @@ rake server  # Start server
 [WEBrick](http://ruby-doc.org/stdlib-2.1.2/libdoc/webrick/rdoc/WEBrick.html)
 will be fired up.
 
-`rake assets` precompiles your assets and stores them in `/public`. You should
-explicitly tell Rail what should be precompiled. It can be done in
-`config/application.rb` as exemplified below:
-```ruby
-module MyProject
-  class Application < Rail::Application
-    config.precompile << 'application.css'
-    config.precompile << 'application.js'
-    config.precompile << 'index.html'
-  end
-end
-```
+`rake assets` compiles your assets and stores them in `public`. You should
+explicitly tell Rail what to compile as it was shown in the previous section.
+Note that the server will try to serve from `public` first, so make sure you
+delete the precompiled files when you change your code in `app`.
 
-Note that the files in `/public` have a high priority than the one of the files
-in `/app`, and, therefore, the server will try to served from `/public` first.
-
+### Examples
 Additional usage examples can be found
 [here](https://github.com/IvanUkhov/type-works),
 [here](https://github.com/IvanUkhov/photography), and
