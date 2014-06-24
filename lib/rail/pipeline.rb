@@ -20,10 +20,7 @@ module Rail
 
       path = "#{ path }.html" if File.extname(path).empty?
 
-      asset = sprockets[path]
-      code, body = asset ? [ 200, asset ] : [ 404, [ 'Not found' ] ]
-
-      [ code, {}, body ]
+      sprockets.call('PATH_INFO' => path)
     end
 
     private
