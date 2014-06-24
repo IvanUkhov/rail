@@ -25,15 +25,8 @@ Then run [Bundler](http://bundler.io/):
 $ bundle
 ```
 
-Now we need to create two files: `config.ru` and `config/application.rb`.
-In `config.ru`:
-```ruby
-require_relative 'config/application'
-
-run MyProject::Application.new
-```
-
-In `config/application.rb`:
+Now we need to create three files: `config/application.rb`, `config.ru`, and
+`Rakefile`. In `config/application.rb`:
 ```ruby
 require 'bundler'
 Bundler.require(:default)
@@ -42,6 +35,20 @@ module MyProject
   class Application < Rail::Application
   end
 end
+```
+
+In `config.ru`:
+```ruby
+require_relative 'config/application'
+
+run MyProject::Application.new
+```
+
+In `Rakefile`:
+```ruby
+require_relative 'config/application'
+
+MyProject::Application.load_tasks
 ```
 
 Feel free to replace `MyProject` with the name of your project. That’s it.
