@@ -17,7 +17,7 @@ First of all, include the gem in your `Gemfile`. Here is an example:
 ```ruby
 source 'https://rubygems.org'
 
-gem 'rail', '~> 0.0.3'
+gem 'rail', '~> 0.0.4'
 
 # The rest is optional
 gem 'redcarpet', '~> 3.1.2' # your favorit complement to Haml
