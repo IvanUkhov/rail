@@ -40,7 +40,10 @@ module Rail
     end
 
     def self.precompile
-      return if config.precompile.empty?
+      if config.precompile.empty?
+        puts 'Nothing to precompile.'
+        return
+      end
 
       application = self.new
 
@@ -55,9 +58,12 @@ module Rail
 
         puts "#{ path } -> #{ file }"
 
-        _, _, source = application.call('PATH_INFO' => path)
+        request = Request.new('REQUEST_METHOD' => 'GET', 'PATH_INFO' => path)
+        _, _, source = application.pipeline.process(request)
 
-        File.open(file, 'w') { |f| f.write(source.to_s) }
+        File.open(file, 'w') do |file|
+          source.each { |chunk| file.write(chunk) }
+        end
       end
 
       puts
