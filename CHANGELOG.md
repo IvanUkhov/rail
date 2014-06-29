@@ -1,3 +1,7 @@
+## Rail 0.0.5 (June 29, 2014)
+
+* Enforced usage of the pipeline when precompiling assets.
+
 ## Rail 0.0.4 (June 26, 2014)
 
 * Proper format of README making YARD happy.
