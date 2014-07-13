@@ -11,7 +11,7 @@ module Rail
     end
 
     def process(request)
-      Thread.current[:request] = request
+      context = Context.new(locals: { request: request }, mixins: helpers)
 
       asset = rewrite(request.path)
       processor = Processor.find(asset) or raise NotFoundError
@@ -28,7 +28,7 @@ module Rail
 
       raise NotFoundError unless filename
 
-      body = processor.compile(filename, compress: compress?)
+      body = processor.compile(filename, context: context, compress: compress?)
       headers = { 'Content-Type' => processor.mime_type }
 
       [ 200, headers, Array(body) ]

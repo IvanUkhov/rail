@@ -21,7 +21,7 @@ module Rail
         }.merge(options)
 
         engine = ::Haml::Engine.new(File.read(filename), options)
-        engine.render(options[:scope], options[:locals] || {}, &block)
+        engine.render(options[:context], {}, &block)
       end
     end
   end

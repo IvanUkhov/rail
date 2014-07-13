@@ -11,6 +11,7 @@ require 'uglifier'
 
 require_relative 'rail/application'
 require_relative 'rail/browser'
+require_relative 'rail/context'
 require_relative 'rail/pipeline'
 require_relative 'rail/processor'
 require_relative 'rail/request'

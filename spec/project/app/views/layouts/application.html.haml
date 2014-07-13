@@ -1,6 +1,6 @@
 !!! 5
 %html
   %head
-    %title Hello
+    %title= title
   %body
-    %h1 Hello
+    %h1= request.host || title
