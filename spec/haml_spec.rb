@@ -39,4 +39,22 @@ describe Rail::Application do
 </html>
     BODY
   end
+
+  it 'handles layouts' do
+    controller = Controller.new do
+      config.compress = false
+    end
+    body = controller.process('/articles/about')
+    assert_equal body.strip, <<-BODY.strip
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello</title>
+  </head>
+  <body>
+    <h1>About</h1>
+  </body>
+</html>
+    BODY
+  end
 end

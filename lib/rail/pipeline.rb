@@ -1,7 +1,5 @@
 module Rail
   class Pipeline
-    NotFoundError = Class.new(StandardError)
-
     extend Forwardable
 
     def_delegators :@host, :root, :gems, :helpers, :compress?
@@ -16,24 +14,24 @@ module Rail
       asset = rewrite(request.path)
       processor = Processor.find(asset) or raise NotFoundError
       asset = processor.extensify(asset)
+      filename = find(asset) or raise NotFoundError
 
-      filename = nil
+      body = processor.compile(filename, pipeline: self,
+        context: context, compress: compress?)
 
-      paths.each do |path|
-        path = File.join(path, asset)
-        next unless File.exist?(path)
-        filename = path
-        break
-      end
-
-      raise NotFoundError unless filename
-
-      body = processor.compile(filename, context: context, compress: compress?)
       headers = { 'Content-Type' => processor.mime_type }
 
       [ 200, headers, Array(body) ]
     rescue NotFoundError
       [ 404, {}, [] ]
+    end
+
+    def find(asset)
+      paths.each do |path|
+        filename = File.join(path, asset)
+        return filename if File.exist?(filename)
+      end
+      nil
     end
 
     private

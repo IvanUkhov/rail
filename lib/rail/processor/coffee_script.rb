@@ -23,10 +23,11 @@ module Rail
         output = []
 
         code = File.read(filename)
-        path = File.dirname(filename)
 
-        extract_requirements(code).each do |requirement|
-          output << compile(find(path, requirement), options)
+        extract_requirements(code).each do |name|
+          requirement_filename = find_requirement(name, filename, options)
+          raise NotFoundError unless requirement_filename
+          output << compile(requirement_filename, options)
         end
 
         output << ::CoffeeScript.compile(code, options)
@@ -34,14 +35,23 @@ module Rail
         output.join
       end
 
-      def self.find(path, requirement)
-        filename = File.join(path, requirement)
-        [ filename,
-          "#{ filename }.coffee",
-          "#{ filename }.js.coffee"
-        ].find do |filename|
-          File.exist?(filename)
+      def self.find_requirement(name, referrer, options)
+        assets = [ name, "#{ name }.coffee", "#{ name }.js.coffee" ]
+
+        if name =~ /^\.\// # relative?
+          path = File.dirname(referrer)
+          assets.each do |asset|
+            filename = File.join(path, asset)
+            return filename if File.exist?(filename)
+          end
+        else
+          assets.each do |asset|
+            filename = options[:pipeline].find(asset)
+            return filename if filename
+          end
         end
+
+        nil
       end
 
       def self.extract_requirements(code)
@@ -52,7 +62,7 @@ module Rail
         end.compact
       end
 
-      private_class_method :process, :extract_requirements
+      private_class_method :process, :extract_requirements, :find_requirement
     end
   end
 end

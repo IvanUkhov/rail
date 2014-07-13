@@ -20,6 +20,8 @@ require_relative 'rail/support'
 require_relative 'rail/version'
 
 module Rail
+  NotFoundError = Class.new(StandardError)
+
   def self.env
     @env ||= build_env
   end

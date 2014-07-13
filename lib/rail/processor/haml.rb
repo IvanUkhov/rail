@@ -21,8 +21,30 @@ module Rail
         }.merge(options)
 
         engine = ::Haml::Engine.new(File.read(filename), options)
-        engine.render(options[:context], {}, &block)
+
+        layout_filename = find_layout(filename, options)
+
+        if layout_filename
+          compile(layout_filename, options) do
+            engine.render(options[:context], {}, &block)
+          end
+        else
+          engine.render(options[:context], {}, &block)
+        end
       end
+
+      def self.find_layout(filename, options)
+        asset = "layouts/#{ filename.split('/')[-2] }"
+
+        [ "#{ asset }.haml", "#{ asset }.html.haml" ].each do |asset|
+          filename = options[:pipeline].find(asset)
+          return filename if filename
+        end
+
+        nil
+      end
+
+      private_class_method :find_layout
     end
   end
 end
