@@ -11,6 +11,17 @@ describe Rail::Application do
     body = controller.process('/application.js')
     assert_equal body.strip, <<-BODY.strip
 (function() {
+  window.Parser = (function() {
+    function Parser(format) {
+      this.format = format;
+    }
+
+    return Parser;
+
+  })();
+
+}).call(this);
+(function() {
   window.Font = (function() {
     function Font(name) {
       this.name = name;
@@ -36,7 +47,7 @@ describe Rail::Application do
     end
     body = controller.process('/application.js')
     assert_equal body.strip, <<-BODY.strip
-(function(){window.Font=function(){function n(n){this.name=n}return n}()}).call(this),function(){var n;n=new Font(\"Benton Modern Display\")}.call(this);
+(function(){window.Parser=function(){function n(n){this.format=n}return n}()}).call(this),function(){window.Font=function(){function n(n){this.name=n}return n}()}.call(this),function(){var n;n=new Font(\"Benton Modern Display\")}.call(this);
     BODY
   end
 end
