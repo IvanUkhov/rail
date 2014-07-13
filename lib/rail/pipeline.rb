@@ -1,5 +1,7 @@
 module Rail
   class Pipeline
+    NotFoundError = Class.new(StandardError)
+
     extend Forwardable
 
     def_delegators :@host, :root, :gems, :helpers, :compress?
@@ -11,56 +13,43 @@ module Rail
     def process(request)
       Thread.current[:request] = request
 
-      path = request.path
+      asset = rewrite(request.path)
+      processor = Processor.find(asset) or raise NotFoundError
+      asset = processor.extensify(asset)
 
-      case path
-      when '', 'index.html'
-        path = 'layouts/application'
+      filename = nil
+
+      paths.each do |path|
+        path = File.join(path, asset)
+        next unless File.exist?(path)
+        filename = path
+        break
       end
 
-      path = "#{ path }.html" if File.extname(path).empty?
+      raise NotFoundError unless filename
 
-      sprockets.call('PATH_INFO' => path)
+      body = processor.compile(filename, compressed: compress?)
+      headers = { 'Content-Type' => processor.mime_type }
+
+      [ 200, headers, Array(body) ]
+    rescue NotFoundError
+      [ 404, {}, [] ]
     end
 
     private
 
-    def sprockets
-      @sprockets ||= build_sprockets
-    end
-
-    def build_sprockets
-      environment = Sprockets::Environment.new
-
-      paths.each do |directory|
-        environment.append_path(directory)
+    def rewrite(path)
+      if [ '', 'index.html' ].include?(path)
+        'layouts/application.html'
+      elsif File.extname(path).empty?
+        "#{ path }.html"
+      else
+        path
       end
-
-      if compress?
-        environment.js_compressor = :uglify
-        environment.css_compressor = :scss
-      end
-
-      # TODO: Find a per-instance way to configure HAML.
-      Haml::Options.defaults[:ugly] = compress?
-
-      helpers.each do |helper|
-        environment.context_class.class_eval do
-          include helper
-        end
-      end
-
-      environment.context_class.class_eval do
-        define_method(:request) do
-          Thread.current[:request]
-        end
-      end
-
-      environment
     end
 
     def paths
-      (application_paths + gems.map { |name| gem_paths(name) }).flatten
+      @paths ||= (application_paths + gems.map { |gem| gem_paths(gem) }).flatten
     end
 
     def application_paths

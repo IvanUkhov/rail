@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'rake'
 
-  spec.add_dependency 'sprockets', '~> 2.12'
+  spec.add_dependency 'rack', '~> 1.5'
 
   spec.add_dependency 'coffee-script', '~> 2.2'
   spec.add_dependency 'haml', '~> 4.0'

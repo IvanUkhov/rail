@@ -8,6 +8,6 @@ class Controller
 
   def process(path)
     _, _, body = @application.call('PATH_INFO' => path)
-    body.to_s
+    body.join.to_s
   end
 end

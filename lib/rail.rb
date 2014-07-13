@@ -2,19 +2,21 @@ require 'ostruct'
 require 'forwardable'
 
 require 'rack'
+
+require 'coffee-script'
 require 'haml'
+require 'sass'
+
 require 'uglifier'
-require 'sprockets'
 
 require_relative 'rail/application'
 require_relative 'rail/browser'
 require_relative 'rail/pipeline'
+require_relative 'rail/processor'
 require_relative 'rail/request'
 require_relative 'rail/server'
 require_relative 'rail/support'
 require_relative 'rail/version'
-
-Sprockets.register_engine('.haml', Tilt::HamlTemplate)
 
 module Rail
   def self.env
