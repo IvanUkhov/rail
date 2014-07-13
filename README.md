@@ -15,7 +15,7 @@ First of all, include the gem in your `Gemfile`. Here is an example:
 ```ruby
 source 'https://rubygems.org'
 
-gem 'rail', '~> 0.0.5'
+gem 'rail', '~> 0.0.6'
 
 # The rest is optional
 gem 'redcarpet', '~> 3.1.2' # your favorit complement to Haml
@@ -127,7 +127,7 @@ delete the precompiled files when you change your code in `app`.
 ### Examples
 
 Additional usage examples can be found
-[here](https://github.com/IvanUkhov/type-works),
+[here](https://github.com/IvanUkhov/opentype-works),
 [here](https://github.com/IvanUkhov/photography), and
 [here](https://github.com/IvanUkhov/liu-profile).
 
