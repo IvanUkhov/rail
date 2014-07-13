@@ -12,14 +12,14 @@ module Rail
       context = Context.new(locals: { request: request }, mixins: helpers)
 
       asset = rewrite(request.path)
-      processor = Processor.find(asset) or raise NotFoundError
-      asset = processor.extensify(asset)
+      klass = Processor.find(asset) or raise NotFoundError
+      asset = klass.extensify(asset)
       filename = find(asset) or raise NotFoundError
 
-      body = processor.compile(filename, pipeline: self,
-        context: context, compress: compress?)
+      processor = klass.new(self)
+      body = processor.compile(filename, context: context)
 
-      headers = { 'Content-Type' => processor.mime_type }
+      headers = { 'Content-Type' => klass.mime_type }
 
       [ 200, headers, Array(body) ]
     rescue NotFoundError

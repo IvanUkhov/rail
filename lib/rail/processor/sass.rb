@@ -13,12 +13,12 @@ module Rail
         'text/css'
       end
 
-      def self.compile(filename, options = {})
+      def compile(filename, options = {})
         options = {
           filename: filename,
           line: 1,
           syntax: :scss,
-          style: options[:compress] ? :compressed : :nested
+          style: compress? ? :compressed : :nested
         }.merge(options)
 
         engine = ::Sass::Engine.new(File.read(filename), options)
