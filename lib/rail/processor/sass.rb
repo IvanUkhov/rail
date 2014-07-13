@@ -18,7 +18,7 @@ module Rail
           filename: filename,
           line: 1,
           syntax: :scss,
-          style: options[:compressed] ? :compressed : :nested
+          style: options[:compress] ? :compressed : :nested
         }.merge(options)
 
         engine = ::Sass::Engine.new(File.read(filename), options)

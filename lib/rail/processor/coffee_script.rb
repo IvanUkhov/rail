@@ -15,7 +15,7 @@ module Rail
 
       def self.compile(filename, options = {})
         code = process(filename, options)
-        code = Uglifier.new.compile(code) if options[:compressed]
+        code = Uglifier.new.compile(code) if options[:compress]
         code
       end
 

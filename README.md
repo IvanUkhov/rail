@@ -1,14 +1,12 @@
 # Rail [![Gem Version](https://badge.fury.io/rb/rail.svg)](http://badge.fury.io/rb/rail) [![Dependency Status](https://gemnasium.com/IvanUkhov/rail.svg)](https://gemnasium.com/IvanUkhov/rail) [![Build Status](https://travis-ci.org/IvanUkhov/rail.svg?branch=master)](https://travis-ci.org/IvanUkhov/rail)
 
 A light framework for front-end development inspired by
-[Rails](http://rubyonrails.org/). It is solely based on
-[Sprockets](https://github.com/sstephenson/sprockets) and includes the
-following components out of the box:
+[Rails](http://rubyonrails.org/). The sole purpose of Rail is to compile
+assets, and it includes the following components:
 
 * [CoffeeScript](http://coffeescript.org/) for JavaScript,
-* [Haml](http://haml.info/) for HTML,
-* [Sass](http://sass-lang.com/) for CSS, and
-* [Uglifier](https://github.com/lautis/uglifier) for compression.
+* [Haml](http://haml.info/) for HTML, and
+* [Sass](http://sass-lang.com/) for CSS.
 
 ## Installation
 

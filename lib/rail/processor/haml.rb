@@ -17,7 +17,7 @@ module Rail
         options = {
           filename: filename,
           line: 1,
-          ugly: options[:compressed]
+          ugly: options[:compress]
         }.merge(options)
 
         engine = ::Haml::Engine.new(File.read(filename), options)

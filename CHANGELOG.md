@@ -1,14 +1,18 @@
+## Rail (develop)
+
+* Dropped the dependency on Sprockets.
+
 ## Rail 0.0.5 (June 29, 2014)
 
-* Enforced usage of the pipeline when precompiling assets.
+* Enforced the usage of the pipeline when precompiling assets.
 
 ## Rail 0.0.4 (June 26, 2014)
 
-* Proper format of README making YARD happy.
+* Changed the format of README to make YARD happy.
 
 ## Rail 0.0.3 (June 24, 2014)
 
-* Proper response headers when pipelining assets.
+* Set proper response headers when pipelining assets.
 
 ## Rail 0.0.2 (June 21, 2014)
 

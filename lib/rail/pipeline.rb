@@ -28,7 +28,7 @@ module Rail
 
       raise NotFoundError unless filename
 
-      body = processor.compile(filename, compressed: compress?)
+      body = processor.compile(filename, compress: compress?)
       headers = { 'Content-Type' => processor.mime_type }
 
       [ 200, headers, Array(body) ]
