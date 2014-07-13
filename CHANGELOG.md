@@ -1,6 +1,7 @@
 ## Rail (develop)
 
 * Dropped the dependency on Sprockets.
+* Implemented the rendering of templates inside layouts.
 
 ## Rail 0.0.5 (June 29, 2014)
 

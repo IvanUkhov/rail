@@ -73,8 +73,13 @@ Organize your code according to the following convention:
 * `app/helpers` for helper modules, and
 * `public` for other static content.
 
-In addition, `app/views/layouts/application.html.haml` will be used for
-rendering the root of your application (both `/` and `/index.html`).
+The templates in `app/views/layouts` have a special purpose. First,
+`application.html.haml` is used for rendering the root of your application
+(both `/` and `/index.html`). Second, any template in `layouts` is used as
+a layout for the templates in the subfolder of `views` that has the same name
+as the layout. For example, `articles/what-is-the-meaning-of-life.html.haml`
+will be rendered in the context of `layouts/articles.html.haml` provided
+that the latter has a placeholder for the former via the `yield` keyword.
 
 ### Configuration
 
