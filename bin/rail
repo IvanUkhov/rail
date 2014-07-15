@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.expand_path('../../lib', __FILE__))
+
+require 'rail/generator'
+
+unless ARGV.length == 2 && ARGV[0] == 'new'
+  puts 'Usage: rail new <project_name>'
+  exit 1
+end
+
+begin
+  Rail::Generator.new(root_dir: ARGV[1]).run
+rescue Rail::Generator::Error => e
+  puts e
+  exit 1
+end
+
+# vim: set ft=ruby
