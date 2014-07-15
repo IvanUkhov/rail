@@ -1,53 +1,19 @@
 #!/usr/bin/env ruby
 
-library_dir = File.expand_path('../../lib', __FILE__)
-$LOAD_PATH.unshift(library_dir)
+$LOAD_PATH.unshift(File.expand_path('../../lib', __FILE__))
 
 require 'rail/generator'
 
-def abort(message = 'Usage: rail new <project_name>')
-  puts message
-  exit
+unless ARGV.length == 2 && ARGV[0] == 'new'
+  puts 'Usage: rail new <project_name>'
+  exit 1
 end
 
-abort unless ARGV.length == 2 && ARGV[0] == 'new'
-
-root_dir = ARGV[1]
-
-abort('The directory already exists.') if File.directory?(root_dir)
-
-project_name = root_dir
-  .gsub(/^[^a-zA-Z]*/, '')
-  .gsub(/[^\w]/, '')
-  .gsub(/^\w|_\w/, &:upcase)
-  .gsub(/_+/, ' ')
-
-class_name = project_name.gsub(' ', '')
-
-abort('The project name is invalid.') if class_name.empty?
-
-template_dir = File.join(library_dir, 'rail/templates')
-
-generator = Rail::Generator.new \
-  root_dir: root_dir, template_dir: template_dir
-
-files = [
-  'app/assets/javascripts/application.js.coffee',
-  'app/assets/stylesheets/application.css.scss',
-  'app/helpers/application_helper.rb',
-  'app/views/layouts/application.html.haml.erb',
-  'config/application.rb.erb',
-  'config.ru.erb',
-  'Gemfile',
-  'public/favicon.png',
-  'Rakefile.erb'
-]
-
-locals = {
-  class_name: class_name,
-  project_name: project_name
-}
-
-generator.process(files, locals)
+begin
+  Rail::Generator.new(root_dir: ARGV[1]).run
+rescue Rail::Generator::Error => e
+  puts e
+  exit 1
+end
 
 # vim: set ft=ruby
