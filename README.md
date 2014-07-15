@@ -37,10 +37,10 @@ $ rake server
 
 Open `http://localhost:3000` in your browser, see “My Project,” and enjoy.
 
-The `rail new my_project` command creates a new folder in the current directory
-called `my_project` and initializes a basic Rail project inside that folder.
-In this case, `MyProject` is used as the class name of the project. Feel free
-to replace `my_project` with the name of your project.
+Under the hood, the `rail new my_project` command creates a new folder in the
+current directory called `my_project` and initializes a basic Rail project
+inside that folder. In this case, `MyProject` is used as the class name of
+the project. Feel free to replace `my_project` with the name of your project.
 
 ## Manual Installation
 
@@ -56,14 +56,14 @@ gem 'redcarpet', '~> 3.1.2' # your favorit complement to Haml
 gem 'thin', '~> 1.6.2'      # your favorit Web server
 ```
 
-Then run [Bundler](http://bundler.io/):
+Run [Bundler](http://bundler.io/):
 
 ```bash
 $ bundle
 ```
 
-Now we need to create three files: `config/application.rb`, `config.ru`, and
-`Rakefile`. In `config/application.rb`:
+Create three files: `config/application.rb`, `config.ru`, and `Rakefile`.
+In `config/application.rb`:
 
 ```ruby
 require 'bundler'
