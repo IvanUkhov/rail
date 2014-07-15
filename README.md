@@ -8,14 +8,48 @@ assets, and it includes the following components:
 * [Haml](http://haml.info/) for HTML, and
 * [Sass](http://sass-lang.com/) for CSS.
 
-## Installation
+## Straightforward Installation
 
-First of all, include the gem in your `Gemfile`. Here is an example:
+Install the gem:
+
+```bash
+$ gem install rail
+```
+
+Create a new project:
+
+```bash
+$ rail new my_project
+```
+
+Run [Bundler](http://bundler.io/):
+
+```bash
+$ cd ./my_project
+$ bundle
+```
+
+Run the server:
+
+```bash
+$ rake server
+```
+
+Open `http://localhost:3000` in your browser, see “My Project,” and enjoy.
+
+The `rail new my_project` command creates a new folder in the current directory
+called `my_project` and initializes a basic Rail project inside that folder.
+In this case, `MyProject` is used as the class name of the project. Feel free
+to replace `my_project` with the name of your project.
+
+## Manual Installation
+
+Include the gem in your `Gemfile`:
 
 ```ruby
 source 'https://rubygems.org'
 
-gem 'rail', '~> 0.0.6'
+gem 'rail', '~> 0.0.7'
 
 # The rest is optional
 gem 'redcarpet', '~> 3.1.2' # your favorit complement to Haml
@@ -57,7 +91,7 @@ require_relative 'config/application'
 MyProject::Application.load_tasks
 ```
 
-Feel free to replace `MyProject` with the name of your project. That’s it.
+Feel free to replace `MyProject` with the name of your project.
 
 ## Usage
 
