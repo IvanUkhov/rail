@@ -1,3 +1,7 @@
+## Rail 0.0.7 (July 15, 2014)
+
+* Added a CLI for generating project directories.
+
 ## Rail 0.0.6 (July 13, 2014)
 
 * Dropped the dependency on Sprockets.
