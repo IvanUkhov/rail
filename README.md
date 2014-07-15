@@ -8,7 +8,9 @@ assets, and it includes the following components:
 * [Haml](http://haml.info/) for HTML, and
 * [Sass](http://sass-lang.com/) for CSS.
 
-## Straightforward Installation
+## Installation
+
+### Straightforward
 
 Install the gem:
 
@@ -42,7 +44,7 @@ current directory called `my_project` and initializes a basic Rail project
 inside that folder. In this case, `MyProject` is used as the class name of
 the project. Feel free to replace `my_project` with the name of your project.
 
-## Manual Installation
+### Manual
 
 Include the gem in your `Gemfile`:
 
