@@ -1,7 +1,7 @@
 require 'minitest/spec'
 require 'minitest/autorun'
 
-require_relative 'project/controller'
+require 'fixtures/project/controller'
 
 describe Rail::Application do
   it 'handles uncompressed CoffeeScript assets' do
