@@ -3,9 +3,12 @@ require 'spec_helper'
 describe Rail::Precompiler do
   let(:pipeline) { MiniTest::Mock.new }
   let(:storage) { MiniTest::Mock.new }
-  let(:logger) { Class.new { def write(*) end }.new }
 
-  subject { Rail::Precompiler.new(pipeline, storage: storage, logger: logger) }
+  subject do
+    precompiler = Rail::Precompiler.new(pipeline, storage)
+    def precompiler.report(*) end # mute
+    precompiler
+  end
 
   describe '#process' do
     it 'works' do

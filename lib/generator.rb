@@ -48,6 +48,7 @@ class Generator
   end
 
   def report(message)
+    puts "Creating '#{ message }'..."
   end
 
   def make(directory)

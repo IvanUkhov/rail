@@ -41,9 +41,5 @@ module Rail
       end
       process(FILES, @locals)
     end
-
-    def report(message)
-      puts "Creating '#{ message }'..."
-    end
   end
 end

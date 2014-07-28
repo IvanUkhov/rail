@@ -20,42 +20,39 @@ module Rail
       end
     end
 
-    class Logger
-      def write(message)
-        puts message
-      end
-    end
-
-    def initialize(pipeline, options = {})
+    def initialize(pipeline, storage = nil)
       @pipeline = pipeline
-      @storage = options[:storage] || Storage.new
-      @logger = options[:logger] || Logger.new
+      @storage = storage || Storage.new
     end
 
     def process(paths)
       if paths.empty?
-        logger.write('Nothing to precompile.')
+        report('Nothing to precompile.')
         return
       end
 
-      logger.write('Precompiling assets...')
+      report('Precompiling assets...')
 
       paths.each_with_index do |path, i|
-        logger.write('%4d. %s' % [i + 1, path])
+        report('%4d. %s' % [i + 1, path])
         storage.write(path, read(path))
       end
 
-      logger.write('Done.')
+      report('Done.')
     end
 
     private
 
-    attr_reader :pipeline, :storage, :logger
+    attr_reader :pipeline, :storage
 
     def read(path)
       request = Request.new('REQUEST_METHOD' => 'GET', 'PATH_INFO' => path)
       _, _, source = pipeline.process(request)
       source
+    end
+
+    def report(message)
+      puts message
     end
   end
 end
