@@ -39,7 +39,7 @@ module Rail
 
     string.singleton_class.class_eval do
       define_method(:method_missing) do |name, *arguments, &block|
-        super unless name.to_s =~ /^(?<name>.+)\?$/
+        return super unless name.to_s =~ /^(?<name>.+)\?$/
         self == Regexp.last_match(:name)
       end
     end
