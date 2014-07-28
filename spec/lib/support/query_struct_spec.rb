@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'support/query_struct'
 
 RSpec.describe Support::QueryStruct do
-  subject { Support::QueryStruct.new(first: 1, second: 2) }
+  subject { described_class.new(first: 1, second: 2) }
 
   describe '#new' do
     it 'assigns attributes according to the given options' do
@@ -29,7 +29,7 @@ RSpec.describe Support::QueryStruct do
   describe '#merge' do
     it 'returns a new instance' do
       another = subject.merge(fourty_second: 42)
-      expect(another).to be_kind_of(Support::QueryStruct)
+      expect(another).to be_kind_of(described_class)
       expect(another).not_to be subject
     end
 

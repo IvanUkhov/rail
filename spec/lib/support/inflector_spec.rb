@@ -11,7 +11,7 @@ RSpec.describe Support::Inflector do
         'project___  42nd' => 'Project 42nd',
         'PRO ject' => 'PRO Ject'
       }.each_pair do |input, output|
-        expect(Support::Inflector.titelize(input)).to eq output
+        expect(described_class.titelize(input)).to eq output
       end
     end
   end

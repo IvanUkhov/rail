@@ -7,7 +7,7 @@ RSpec.describe Rail::Precompiler do
   let(:storage) { double }
 
   subject do
-    precompiler = Rail::Precompiler.new(pipeline, storage)
+    precompiler = described_class.new(pipeline, storage)
     allow(precompiler).to receive(:report)
     precompiler
   end

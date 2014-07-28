@@ -3,7 +3,7 @@ require 'rail/generator'
 
 RSpec.describe Rail::Generator do
   let(:destination) { 'project' }
-  subject { Rail::Generator.new(destination: destination) }
+  subject { described_class.new(destination: destination) }
 
   describe '#run' do
     it 'raises an exception if the destination folder already exists' do
