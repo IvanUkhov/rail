@@ -1,9 +1,9 @@
 require 'ostruct'
 
-module Rail
-  class Configuration < OpenStruct
+module Support
+  class QueryStruct < OpenStruct
     def merge(options = {})
-      Configuration.new(self.to_h.merge(options.to_h))
+      self.class.new(self.to_h.merge(options.to_h))
     end
 
     def method_missing(name, *arguments, &block)

@@ -22,7 +22,7 @@ module Rail
     end
 
     def self.config
-      @config ||= Configuration.new(default_options)
+      @config ||= Support::QueryStruct.new(default_options)
     end
 
     def self.load_tasks

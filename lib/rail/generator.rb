@@ -1,7 +1,8 @@
-require 'generator'
+require 'support/generator'
+require 'support/inflector'
 
 module Rail
-  class Generator < ::Generator
+  class Generator < Support::Generator
     Error = Class.new(StandardError)
 
     FILES = [
@@ -20,12 +21,8 @@ module Rail
       destination = options.fetch(:destination)
       source = File.expand_path('../templates', __FILE__)
 
-      project_name = (destination.split('/').last || '')
-        .gsub(/^[^a-zA-Z]*/, '')
-        .gsub(/[^\w]/, '')
-        .gsub(/^\w|_\w/, &:upcase)
-        .gsub(/_+/, ' ')
-
+      directory = destination.split('/').last || ''
+      project_name = Support::Inflector.titelize(directory)
       class_name = project_name.gsub(' ', '')
 
       @locals = { class_name: class_name, project_name: project_name }

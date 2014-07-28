@@ -1,7 +1,8 @@
-require 'spec_helper'
+require 'minitest/autorun'
+require 'support/query_struct'
 
-describe Rail::Configuration do
-  subject { Rail::Configuration.new(first: 1, second: 2) }
+describe Support::QueryStruct do
+  subject { Support::QueryStruct.new(first: 1, second: 2) }
 
   describe '#new' do
     it 'assigns attributes according to the given options' do
@@ -28,7 +29,7 @@ describe Rail::Configuration do
   describe '#merge' do
     it 'returns a new instance' do
       another = subject.merge(fourty_second: 42)
-      assert another.is_a?(Rail::Configuration)
+      assert another.is_a?(Support::QueryStruct)
       assert another.object_id != subject.object_id
     end
 

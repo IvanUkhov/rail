@@ -44,7 +44,7 @@ module Rail
     def load_helpers
       Dir[File.join(root, 'app/helpers/*.rb')].map do |file|
         require file
-        Support.constantize(File.basename(file, '.rb'))
+        Support::Inflector.constantize(File.basename(file, '.rb'))
       end
     end
 
