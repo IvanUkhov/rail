@@ -1,6 +1,4 @@
-require 'minitest/spec'
-require 'minitest/autorun'
-
+require 'spec_helper'
 require 'fixtures/project/controller'
 
 describe Rail::Application do
