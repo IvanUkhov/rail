@@ -46,16 +46,12 @@ the project. Feel free to replace `my_project` with the name of your project.
 
 ### Manual
 
-Include the gem in your `Gemfile`:
+Create a `Gemfile`:
 
 ```ruby
 source 'https://rubygems.org'
 
-gem 'rail', '~> 0.0.7'
-
-# The rest is optional
-gem 'redcarpet', '~> 3.1.2' # your favorit complement to Haml
-gem 'thin', '~> 1.6.2'      # your favorit Web server
+gem 'rail'
 ```
 
 Run [Bundler](http://bundler.io/):

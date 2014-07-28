@@ -1,3 +1,7 @@
+## Rail (develop)
+
+* Automatically reload helper modules when they change.
+
 ## Rail 0.0.7 (July 15, 2014)
 
 * Added a CLI for generating project directories.
