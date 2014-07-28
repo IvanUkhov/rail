@@ -3,8 +3,6 @@ require 'support/inflector'
 
 module Rail
   class Generator < Support::Generator
-    Error = Class.new(StandardError)
-
     FILES = [
       'app/assets/javascripts/application.js.coffee',
       'app/assets/stylesheets/application.css.scss',
@@ -27,14 +25,14 @@ module Rail
 
       @locals = { class_name: class_name, project_name: project_name }
 
-      raise Error, 'The project name is invalid.' if class_name.empty?
+      raise ArgumentError, 'The project name is invalid.' if class_name.empty?
 
       super(destination: destination, source: source)
     end
 
     def run
       if File.directory?(destination)
-        raise Error, 'The directory already exists.'
+        raise ArgumentError, 'The directory already exists.'
       end
       process(FILES, @locals)
     end
