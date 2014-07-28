@@ -2,10 +2,11 @@ module Rail
   class Pipeline
     extend Forwardable
 
-    def_delegators :@host, :root, :gems, :helpers, :compress?
+    attr_reader :config
+    def_delegators :config, :root, :gems, :compress?
 
-    def initialize(host)
-      @host = host
+    def initialize(config)
+      @config = config
     end
 
     def process(request)
@@ -35,6 +36,17 @@ module Rail
     end
 
     private
+
+    def helpers
+      @helpers ||= load_helpers
+    end
+
+    def load_helpers
+      Dir[File.join(root, 'app/helpers/*.rb')].map do |file|
+        require file
+        Support.constantize(File.basename(file, '.rb'))
+      end
+    end
 
     def rewrite(path)
       if ['', 'index.html'].include?(path)

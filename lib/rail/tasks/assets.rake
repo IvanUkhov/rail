@@ -1,4 +1,4 @@
 desc 'Precompile assets'
 task :assets do
-  Rail.applications.first.precompile
+  Rail.applications.map(&:new).each(&:precompile)
 end

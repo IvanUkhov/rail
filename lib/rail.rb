@@ -1,4 +1,3 @@
-require 'ostruct'
 require 'forwardable'
 
 require 'rack'
@@ -11,8 +10,10 @@ require 'uglifier'
 
 require_relative 'rail/application'
 require_relative 'rail/browser'
+require_relative 'rail/configuration'
 require_relative 'rail/context'
 require_relative 'rail/pipeline'
+require_relative 'rail/precompiler'
 require_relative 'rail/processor'
 require_relative 'rail/request'
 require_relative 'rail/server'
