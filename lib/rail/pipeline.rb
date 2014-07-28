@@ -21,9 +21,9 @@ module Rail
 
       headers = { 'Content-Type' => klass.mime_type }
 
-      [ 200, headers, Array(body) ]
+      [200, headers, Array(body)]
     rescue NotFoundError
-      [ 404, {}, [] ]
+      [404, {}, []]
     end
 
     def find(asset)
@@ -37,10 +37,10 @@ module Rail
     private
 
     def rewrite(path)
-      if [ '', 'index.html' ].include?(path)
+      if ['', 'index.html'].include?(path)
         'layouts/application.html'
       elsif File.extname(path).empty?
-        "#{ path }.html"
+        "#{path}.html"
       else
         path
       end
