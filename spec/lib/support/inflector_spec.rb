@@ -1,7 +1,7 @@
-require 'minitest/autorun'
+require 'spec_helper'
 require 'support/inflector'
 
-describe Support::Inflector do
+RSpec.describe Support::Inflector do
   describe '.titelize' do
     it 'returns pretty strings' do
       { " \t  pro ject \n" => 'Pro Ject',
@@ -11,7 +11,7 @@ describe Support::Inflector do
         'project___  42nd' => 'Project 42nd',
         'PRO ject' => 'PRO Ject'
       }.each_pair do |input, output|
-        assert_equal output, Support::Inflector.titelize(input)
+        expect(Support::Inflector.titelize(input)).to eq output
       end
     end
   end

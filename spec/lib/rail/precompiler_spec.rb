@@ -1,24 +1,25 @@
 require 'spec_helper'
+require 'rail/request'
+require 'rail/precompiler'
 
-describe Rail::Precompiler do
-  let(:pipeline) { MiniTest::Mock.new }
-  let(:storage) { MiniTest::Mock.new }
+RSpec.describe Rail::Precompiler do
+  let(:pipeline) { double }
+  let(:storage) { double }
 
   subject do
     precompiler = Rail::Precompiler.new(pipeline, storage)
-    def precompiler.report(*) end # mute
+    allow(precompiler).to receive(:report)
     precompiler
   end
 
   describe '#process' do
     it 'works' do
-      pipeline.expect(:process, [200, {}, ['Hello, world!']], [Rail::Request])
-      storage.expect(:write, nil, ['index.html', ['Hello, world!']])
+      expect(pipeline).to \
+        receive(:process).and_return([200, {}, ['Hello, world!']])
+      expect(storage).to \
+        receive(:write).with('index.html', ['Hello, world!'])
 
       subject.process(['index.html'])
-
-      pipeline.verify
-      storage.verify
     end
   end
 end

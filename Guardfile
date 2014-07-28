@@ -1,4 +1,4 @@
-guard :minitest do
+guard :rspec, cmd: 'bundle exec rspec' do
   watch(%r{^lib/(.+)\.rb$}) do |match|
     file = "spec/lib/#{match[1]}_spec.rb"
     File.exist?(file) ? file : 'spec'

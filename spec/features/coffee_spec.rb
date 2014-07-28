@@ -1,13 +1,13 @@
 require 'spec_helper'
 require 'fixtures/project/controller'
 
-describe Rail::Application do
+RSpec.describe Rail::Application do
   it 'handles uncompressed CoffeeScript assets' do
     controller = Controller.new do
       config.compress = false
     end
     body = controller.process('/application.js')
-    assert_equal body.strip, <<-BODY.strip
+    expect(body.strip).to eq <<-BODY.strip
 (function() {
   window.Parser = (function() {
     function Parser(format) {
@@ -44,7 +44,7 @@ describe Rail::Application do
       config.compress = true
     end
     body = controller.process('/application.js')
-    assert_equal body.strip, <<-BODY.strip
+    expect(body.strip).to eq <<-BODY.strip
 (function(){window.Parser=function(){function n(n){this.format=n}return n}()}).call(this),function(){window.Font=function(){function n(n){this.name=n}return n}()}.call(this),function(){var n;n=new Font(\"Benton Modern Display\")}.call(this);
     BODY
   end

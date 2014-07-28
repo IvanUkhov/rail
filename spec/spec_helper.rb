@@ -1,2 +1,3 @@
-require 'minitest/autorun'
-require 'rail'
+RSpec.configure do |config|
+  config.disable_monkey_patching!
+end
