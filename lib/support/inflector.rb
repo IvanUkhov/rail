@@ -9,8 +9,8 @@ module Support
           .gsub(/^\w| \w/, &:upcase)
     end
 
-    def self.constantize(name)
-      const_get(name.split(/[\s_]+/).map(&:capitalize).join)
+    def self.modulize(name)
+      name.split(/[\s_]+/).map(&:capitalize).join.to_sym
     end
   end
 end

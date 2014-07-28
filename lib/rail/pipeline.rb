@@ -7,10 +7,11 @@ module Rail
 
     def initialize(config)
       @config = config
+      @loader = Support::Loader.new(File.join(root, 'app/helpers/*.rb'))
     end
 
     def process(request)
-      context = Context.new(locals: { request: request }, mixins: helpers)
+      context = Context.new(locals: { request: request }, mixins: loader.find)
 
       asset = rewrite(request.path)
       klass = Processor.find(asset) or raise NotFoundError
@@ -37,16 +38,7 @@ module Rail
 
     private
 
-    def helpers
-      @helpers ||= load_helpers
-    end
-
-    def load_helpers
-      Dir[File.join(root, 'app/helpers/*.rb')].map do |file|
-        require file
-        Support::Inflector.constantize(File.basename(file, '.rb'))
-      end
-    end
+    attr_reader :loader
 
     def rewrite(path)
       if ['', 'index.html'].include?(path)

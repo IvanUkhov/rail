@@ -6,6 +6,7 @@ require 'sass'
 require 'uglifier'
 
 require_relative 'support/inflector'
+require_relative 'support/loader'
 require_relative 'support/query_string'
 require_relative 'support/query_struct'
 
