@@ -36,9 +36,9 @@ module Rail
       private
 
       def find_layout(filename)
-        asset = "layouts/#{ filename.split('/')[-2] }"
+        asset = "layouts/#{filename.split('/')[-2]}"
 
-        [ "#{ asset }.haml", "#{ asset }.html.haml" ].each do |asset|
+        ["#{asset}.haml", "#{asset}.html.haml"].each do |asset|
           filename = pipeline.find(asset)
           return filename if filename
         end

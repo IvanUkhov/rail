@@ -8,7 +8,7 @@ module Rail
       end
 
       def self.extensify(filename)
-        "#{ filename }.#{ input_extension }"
+        "#{filename}.#{input_extension}"
       end
 
       attr_reader :pipeline

@@ -38,7 +38,7 @@ module Rail
       end
 
       def find_requirement(name, referrer)
-        assets = [ name, "#{ name }.coffee", "#{ name }.js.coffee" ]
+        assets = [name, "#{name}.coffee", "#{name}.js.coffee"]
 
         if name =~ /^\.\// # relative?
           path = File.dirname(referrer)
