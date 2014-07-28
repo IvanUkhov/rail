@@ -3,35 +3,35 @@ require 'ostruct'
 require 'fileutils'
 
 class Generator
-  attr_reader :root_dir, :template_dir
+  attr_reader :destination, :source
 
   def initialize(options)
-    @root_dir = options.fetch(:root_dir)
-    @template_dir = options.fetch(:template_dir)
+    @destination = options.fetch(:destination)
+    @source = options.fetch(:source)
   end
 
-  def run(files, locals = {})
+  def process(files, locals = {})
     context = OpenStruct.new(locals)
-    files.each { |file| process(file, context) }
+    files.each { |file| process_one(file, context) }
   end
 
   private
 
-  def process(file, context)
-    source = find(file)
-    destination = route(file)
+  def process_one(file, context)
+    output_file = find(file)
+    input_file = route(file)
 
-    directory = File.dirname(destination)
+    directory = File.dirname(input_file)
     unless File.directory?(directory)
       report(directory)
       make(directory)
     end
 
-    report(destination)
+    report(input_file)
     if template?(file)
-      dump(transform(load(source), context), destination)
+      dump(transform(load(output_file), context), input_file)
     else
-      copy(source, destination)
+      copy(output_file, input_file)
     end
   end
 
@@ -40,30 +40,30 @@ class Generator
   end
 
   def find(file)
-    File.join(template_dir, file)
+    File.join(source, file)
   end
 
   def route(file)
-    File.join(root_dir, file).gsub(/\.erb$/, '')
+    File.join(destination, file).gsub(/\.erb$/, '')
   end
 
   def report(message)
   end
 
-  def make(destination)
-    FileUtils.mkdir_p(destination)
+  def make(directory)
+    FileUtils.mkdir_p(directory)
   end
 
-  def copy(source, destination)
-    FileUtils.cp(source, destination)
+  def copy(output_file, input_file)
+    FileUtils.cp(output_file, input_file)
   end
 
-  def load(source)
-    File.read(source)
+  def load(file)
+    File.read(file)
   end
 
-  def dump(content, destination)
-    File.open(destination, 'w') { |file| file.write(content) }
+  def dump(content, file)
+    File.open(file, 'w') { |file| file.write(content) }
   end
 
   def transform(content, context)

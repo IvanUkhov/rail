@@ -10,7 +10,7 @@ unless ARGV.length == 2 && ARGV[0] == 'new'
 end
 
 begin
-  Rail::Generator.new(root_dir: ARGV[1]).run
+  Rail::Generator.new(destination: ARGV[1]).run
 rescue Rail::Generator::Error => e
   puts e
   exit 1

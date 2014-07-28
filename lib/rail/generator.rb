@@ -17,10 +17,10 @@ module Rail
     ]
 
     def initialize(options)
-      root_dir = options.fetch(:root_dir)
-      template_dir = File.expand_path('../templates', __FILE__)
+      destination = options.fetch(:destination)
+      source = File.expand_path('../templates', __FILE__)
 
-      project_name = (root_dir.split('/').last || '')
+      project_name = (destination.split('/').last || '')
         .gsub(/^[^a-zA-Z]*/, '')
         .gsub(/[^\w]/, '')
         .gsub(/^\w|_\w/, &:upcase)
@@ -32,12 +32,14 @@ module Rail
 
       raise Error, 'The project name is invalid.' if class_name.empty?
 
-      super(root_dir: root_dir, template_dir: template_dir)
+      super(destination: destination, source: source)
     end
 
     def run
-      raise Error, 'The directory already exists.' if File.directory?(root_dir)
-      super(FILES, @locals)
+      if File.directory?(destination)
+        raise Error, 'The directory already exists.'
+      end
+      process(FILES, @locals)
     end
 
     def report(message)
