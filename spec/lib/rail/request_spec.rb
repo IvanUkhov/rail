@@ -3,20 +3,24 @@ require 'rail/request'
 
 RSpec.describe Rail::Request do
   describe '#path' do
-    it 'returns the path without the leading slash' do
-      env = { 'PATH_INFO' => '/foo/bar' }
-      expect(described_class.new(env).path).to eq 'foo/bar'
-
-      env = { 'PATH_INFO' => '/' }
-      expect(described_class.new(env).path).to eq ''
+    it 'removes the leading slash' do
+      env = { 'PATH_INFO' => '/foo/bar.js' }
+      expect(described_class.new(env).path).to eq 'foo/bar.js'
     end
 
-    it 'returns the path without the query string' do
-      env = { 'PATH_INFO' => '/foo/bar?baz' }
-      expect(described_class.new(env).path).to eq 'foo/bar'
+    it 'removes the query string' do
+      env = { 'PATH_INFO' => '/foo/bar.js?baz' }
+      expect(described_class.new(env).path).to eq 'foo/bar.js'
+    end
 
-      env = { 'PATH_INFO' => '/?baz' }
-      expect(described_class.new(env).path).to eq ''
+    it 'appends .html when no extension is given' do
+      env = { 'PATH_INFO' => '/foo/bar' }
+      expect(described_class.new(env).path).to eq 'foo/bar.html'
+    end
+
+    it 'substitutes index.html for /' do
+      env = { 'PATH_INFO' => '/' }
+      expect(described_class.new(env).path).to eq 'index.html'
     end
   end
 end

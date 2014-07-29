@@ -41,13 +41,7 @@ module Rail
     attr_reader :loader
 
     def rewrite(path)
-      if ['', 'index.html'].include?(path)
-        'layouts/application.html'
-      elsif File.extname(path).empty?
-        "#{path}.html"
-      else
-        path
-      end
+      path == 'index.html' ? 'layouts/application.html' : path
     end
 
     def paths
