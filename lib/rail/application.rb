@@ -2,10 +2,10 @@ module Rail
   class Application
     attr_reader :config, :browser, :pipeline
 
-    def initialize(config = {})
-      @config = self.class.config.merge(config)
-      @browser = Browser.new(@config)
-      @pipeline = Pipeline.new(@config)
+    def initialize
+      @config = self.class.config
+      @browser = Browser.new(config)
+      @pipeline = Pipeline.new(config)
     end
 
     def call(env)
