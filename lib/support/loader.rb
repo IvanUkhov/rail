@@ -34,7 +34,7 @@ module Support
     end
 
     def last_modified
-      files.map { |file| File.mtime(file) }.max
+      files.map { |file| File.mtime(file) }.max || Time.at(0)
     end
 
     def unload!
