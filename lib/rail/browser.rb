@@ -14,8 +14,7 @@ module Rail
     end
 
     def accept?(request)
-      path = request.path
-      !path.empty? && File.exist?(File.join(root, path))
+      File.exist?(File.join(root, request.path))
     end
   end
 end

@@ -41,7 +41,9 @@ module Rail
     attr_reader :loader
 
     def rewrite(path)
-      path == 'index.html' ? 'layouts/application.html' : path
+      path = path.sub(/^\//, '')
+      path = 'layouts/application.html' if path == 'index.html'
+      path
     end
 
     def paths

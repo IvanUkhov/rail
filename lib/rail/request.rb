@@ -3,11 +3,11 @@ module Rail
     attr_reader :env
 
     def initialize(env)
-      @env = env
+      @env = rewrite(env)
     end
 
     def path
-      @path ||= rewrite(strip(env['PATH_INFO']))
+      env['PATH_INFO']
     end
 
     def host
@@ -16,14 +16,12 @@ module Rail
 
     private
 
-    def strip(path)
-      path.gsub(/(^\/)|(\?.*$)/, '')
-    end
-
-    def rewrite(path)
-      path = 'index.html' if path.empty?
+    def rewrite(env)
+      path = env['PATH_INFO']
+      path = '/index.html' if [nil, '', '/'].include?(path)
       path = "#{path}.html" if File.extname(path).empty?
-      path
+      env['PATH_INFO'] = path
+      env
     end
   end
 end
