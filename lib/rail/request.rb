@@ -7,7 +7,7 @@ module Rail
     end
 
     def path
-      @path ||= env['PATH_INFO'].sub(/^\//, '').sub(/\?.*$/, '')
+      @path ||= env['PATH_INFO'].gsub(/(^\/)|(\?.*$)/, '')
     end
 
     def host
