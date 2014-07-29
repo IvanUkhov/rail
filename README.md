@@ -120,15 +120,15 @@ As with Rails, Rail is configured inside `config/application.rb`:
 ```ruby
 module MyProject
   class Application < Rail::Application
-    # Import assets from other gems:
-    config.gems << 'turbolinks'
+    # Gems to look for additional assets
+    config.gems << 'googleplus-reader'
 
-    # Precompile assets using `rake assets`:
+    # Assets to precompile when running `rake assets`
     config.precompile << 'application.css'
     config.precompile << 'application.js'
     config.precompile << 'index.html'
 
-    # Compress assets:
+    # Compress assets when serving and precompiling
     config.compress = true
   end
 end

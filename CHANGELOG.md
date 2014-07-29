@@ -1,4 +1,4 @@
-## Rail (develop)
+## Rail 0.0.8 (July 29, 2014)
 
 * Automatically reload helper modules when they change.
 
