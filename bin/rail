@@ -16,4 +16,4 @@ rescue Rail::Generator::Error => e
   exit 1
 end
 
-# vim: set ft=ruby
+# vim: ft=ruby

@@ -7,4 +7,4 @@ guard :rspec, cmd: 'bundle exec rspec' do
   watch(%r{^spec/spec_helper\.rb$}) { 'spec' }
 end
 
-# vim: set ft=ruby
+# vim: ft=ruby
