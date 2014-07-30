@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'support/query_struct'
 
 RSpec.describe Support::QueryStruct do

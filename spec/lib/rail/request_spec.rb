@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'rail/request'
 
 RSpec.describe Rail::Request do

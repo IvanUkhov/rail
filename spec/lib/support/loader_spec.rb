@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'support/loader'
 
 RSpec.describe Support::Loader do

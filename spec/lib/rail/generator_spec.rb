@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'rail/generator'
 
 RSpec.describe Rail::Generator do

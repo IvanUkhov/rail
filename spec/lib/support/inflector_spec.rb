@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'support/inflector'
 
 RSpec.describe Support::Inflector do

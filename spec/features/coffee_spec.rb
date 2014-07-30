@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'fixtures/project/controller'
 
 RSpec.describe Rail::Application do
