@@ -22,7 +22,11 @@ module Rail
     end
 
     def self.config
-      @config ||= Support::QueryStruct.new(default_options)
+      @config ||= Support::QueryStruct.new(default_options).tap do |config|
+        Processor.classes.each do |klass|
+          config[klass.token] = Support::QueryStruct.new
+        end
+      end
     end
 
     def self.load_tasks

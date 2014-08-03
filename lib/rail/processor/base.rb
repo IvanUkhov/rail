@@ -11,6 +11,10 @@ module Rail
         "#{filename}.#{input_extension}"
       end
 
+      def self.token
+        @token ||= Support::Inflector.underscorize(name.split('::').last).to_sym
+      end
+
       attr_reader :pipeline
       def_delegator :pipeline, :compress?
 

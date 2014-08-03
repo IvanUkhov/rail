@@ -1,3 +1,7 @@
+## Rail (develop)
+
+* Possibility to pass arbitrary parameters to processors.
+
 ## Rail 0.0.8 (July 29, 2014)
 
 * Automatically reload helper modules when they change.

@@ -130,6 +130,9 @@ module MyProject
 
     # Compress assets when serving and precompiling
     config.compress = true
+
+    # Configure the CoffeeScript, Haml, and Sass processors
+    config.coffee_script.bare = true
   end
 end
 ```

@@ -11,15 +11,16 @@ module Rail
     end
 
     def process(request)
-      context = Context.new(locals: { request: request }, mixins: loader.find)
-
       asset = rewrite(request.path)
       klass = Processor.find(asset) or raise NotFoundError
       asset = klass.extensify(asset)
       filename = find(asset) or raise NotFoundError
 
+      context = Context.new(locals: { request: request }, mixins: loader.find)
+      options = { context: context }.merge(config[klass.token].to_h)
+
       processor = klass.new(self)
-      body = processor.compile(filename, context: context)
+      body = processor.compile(filename, options)
 
       headers = { 'Content-Type' => klass.mime_type }
 

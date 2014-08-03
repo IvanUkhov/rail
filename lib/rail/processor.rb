@@ -5,8 +5,8 @@ require_relative 'processor/sass'
 
 module Rail
   module Processor
-    def self.processors
-      @processors ||= Processor.constants.map do |name|
+    def self.classes
+      @classes ||= Processor.constants.map do |name|
         object = Processor.const_get(name)
         object.is_a?(Class) && object < Base ? object : nil
       end.compact
@@ -14,7 +14,7 @@ module Rail
 
     def self.find(filename)
       extension = File.extname(filename).slice(1..-1)
-      processors.find { |processor| processor.capable?(extension) }
+      classes.find { |processor| processor.capable?(extension) }
     end
   end
 end
