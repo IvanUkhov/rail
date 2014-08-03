@@ -1,10 +1,8 @@
-require 'fixtures/project/controller'
+require 'feature_helper'
 
-RSpec.describe Rail::Application do
-  it 'handles uncompressed CoffeeScript assets' do
-    controller = Controller.new do
-      config.compress = false
-    end
+RSpec.feature 'Handling CoffeeScript' do
+  scenario 'Serving an ordinary script' do
+    controller = Controller.new
     body = controller.process('/application.js')
     expect(body.strip).to eq <<-BODY.strip
 (function() {
@@ -38,7 +36,7 @@ RSpec.describe Rail::Application do
     BODY
   end
 
-  it 'handles compressed CoffeeScript assets' do
+  scenario 'Serving a compressed script' do
     controller = Controller.new do
       config.compress = true
     end

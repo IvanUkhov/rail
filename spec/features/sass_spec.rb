@@ -1,10 +1,8 @@
-require 'fixtures/project/controller'
+require 'feature_helper'
 
-RSpec.describe Rail::Application do
-  it 'handles uncompressed Sass assests' do
-    controller = Controller.new do
-      config.compress = false
-    end
+RSpec.feature 'Handling Sass' do
+  scenario 'Serving an ordinary stylesheet' do
+    controller = Controller.new
     body = controller.process('/application.css')
     expect(body.strip).to eq <<-BODY.strip
 * {
@@ -16,7 +14,7 @@ body {
     BODY
   end
 
-  it 'handles compressed Sass assets' do
+  scenario 'Serving a compressed stylesheet' do
     controller = Controller.new do
       config.compress = true
     end

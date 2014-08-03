@@ -1,10 +1,8 @@
-require 'fixtures/project/controller'
+require 'feature_helper'
 
-RSpec.describe Rail::Application do
-  it 'handles uncompressed Haml assets' do
-    controller = Controller.new do
-      config.compress = false
-    end
+RSpec.feature 'Handling Haml' do
+  scenario 'Serving an ordinary template' do
+    controller = Controller.new
     body = controller.process('/')
     expect(body.strip).to eq <<-BODY.strip
 <!DOCTYPE html>
@@ -19,7 +17,7 @@ RSpec.describe Rail::Application do
     BODY
   end
 
-  it 'handles compressed Haml assets' do
+  scenario 'Serving a compressed template' do
     controller = Controller.new do
       config.compress = true
     end
@@ -37,10 +35,8 @@ RSpec.describe Rail::Application do
     BODY
   end
 
-  it 'handles layouts' do
-    controller = Controller.new do
-      config.compress = false
-    end
+  scenario 'Serving a templates within a layout' do
+    controller = Controller.new
     body = controller.process('/articles/about')
     expect(body.strip).to eq <<-BODY.strip
 <!DOCTYPE html>
