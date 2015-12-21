@@ -15,26 +15,26 @@ assets, and it includes the following components:
 Install the gem:
 
 ```bash
-$ gem install rail
+gem install rail
 ```
 
 Create a new project:
 
 ```bash
-$ rail new my_project
+rail new my_project
 ```
 
 Run [Bundler](http://bundler.io/):
 
 ```bash
-$ cd ./my_project
-$ bundle
+cd ./my_project
+bundle
 ```
 
 Run the server:
 
 ```bash
-$ rake server
+rake server
 ```
 
 Open `http://localhost:3000` in your browser, see “My Project,” and enjoy.
@@ -57,7 +57,7 @@ gem 'rail'
 Run [Bundler](http://bundler.io/):
 
 ```bash
-$ bundle
+bundle
 ```
 
 Create three files: `config/application.rb`, `config.ru`, and `Rakefile`.
@@ -142,7 +142,7 @@ If `config.compress` is not specified, it is implicitly set to
 Run [Rake](https://github.com/jimweirich/rake) to see the available tasks:
 
 ```bash
-$ rake -T
+rake -T
 rake assets  # Precompile assets
 rake server  # Start server
 ```
