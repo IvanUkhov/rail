@@ -54,7 +54,7 @@ module Rail
       [
         File.join(root, 'app/assets/javascripts'),
         File.join(root, 'app/assets/stylesheets'),
-        File.join(root, 'app/views')
+        File.join(root, 'app/views'),
       ]
     end
 
@@ -62,7 +62,7 @@ module Rail
       gem = Gem::Specification.find_by_name(name)
       [
         File.join(gem.gem_dir, 'lib/assets/javascripts'),
-        File.join(gem.gem_dir, 'lib/assets/stylesheets')
+        File.join(gem.gem_dir, 'lib/assets/stylesheets'),
       ]
     end
   end

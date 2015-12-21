@@ -12,7 +12,7 @@ module Rail
       'config.ru.erb',
       'Gemfile',
       'public/favicon.png',
-      'Rakefile.erb'
+      'Rakefile.erb',
     ]
 
     def initialize(options)

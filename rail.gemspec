@@ -6,8 +6,8 @@ require 'rail/version'
 Gem::Specification.new do |spec|
   spec.name          = 'rail'
   spec.version       = Rail::VERSION
-  spec.authors       = [ 'Ivan Ukhov' ]
-  spec.email         = [ 'ivan.ukhov@gmail.com' ]
+  spec.authors       = ['Ivan Ukhov']
+  spec.email         = ['ivan.ukhov@gmail.com']
   spec.summary       = 'A light framework for front-end development ' \
                        'inspired by Rails'
   spec.description   = 'A light framework for front-end development ' \
@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^spec/})
-  spec.require_paths = [ 'lib' ]
+  spec.require_paths = ['lib']
 
   spec.required_ruby_version = '>= 1.9.3'
 
