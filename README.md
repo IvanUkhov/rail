@@ -1,12 +1,11 @@
-# Rail [![Gem Version](https://badge.fury.io/rb/rail.svg)](http://badge.fury.io/rb/rail) [![Dependency Status](https://gemnasium.com/IvanUkhov/rail.svg)](https://gemnasium.com/IvanUkhov/rail) [![Build Status](https://travis-ci.org/IvanUkhov/rail.svg?branch=master)](https://travis-ci.org/IvanUkhov/rail)
+# Rail [![Gem Version][version-img]][version-url] [![Dependency Status][dependency-img]][dependency-url] [![Build Status][build-img]][build-url]
 
-A light framework for front-end development inspired by
-[Rails](http://rubyonrails.org/). The sole purpose of Rail is to compile
-assets, and it includes the following components:
+A light framework for front-end development inspired by [Rails][rails]. The sole
+purpose of Rail is to compile assets, and it includes the following components:
 
-* [CoffeeScript](http://coffeescript.org/) for JavaScript,
-* [Haml](http://haml.info/) for HTML, and
-* [Sass](http://sass-lang.com/) for CSS.
+* [CoffeeScript][coffeescript] for JavaScript,
+* [Haml][haml] for HTML, and
+* [Sass][sass] for CSS.
 
 ## Installation
 
@@ -24,7 +23,7 @@ Create a new project:
 rail new my_project
 ```
 
-Run [Bundler](http://bundler.io/):
+Run [Bundler][bundler]:
 
 ```bash
 cd ./my_project
@@ -41,8 +40,8 @@ Open `http://localhost:3000` in your browser, see “My Project,” and enjoy.
 
 Under the hood, the `rail new my_project` command creates a new folder in the
 current directory called `my_project` and initializes a basic Rail project
-inside that folder. In this case, `MyProject` is used as the class name of
-the project. Feel free to replace `my_project` with the name of your project.
+inside that folder. In this case, `MyProject` is used as the class name of the
+project. Feel free to replace `my_project` with the name of your project.
 
 ### Manual
 
@@ -54,14 +53,14 @@ source 'https://rubygems.org'
 gem 'rail'
 ```
 
-Run [Bundler](http://bundler.io/):
+Run [Bundler][bundler]:
 
 ```bash
 bundle
 ```
 
-Create three files: `config/application.rb`, `config.ru`, and `Rakefile`.
-In `config/application.rb`:
+Create three files: `config/application.rb`, `config.ru`, and `Rakefile`. In
+`config/application.rb`:
 
 ```ruby
 require 'bundler'
@@ -106,12 +105,12 @@ Organize your code according to the following convention:
 * `public` for other static content.
 
 The templates in `app/views/layouts` have a special purpose. First,
-`application.html.haml` is used for rendering the root of your application
-(both `/` and `/index.html`). Second, any template in `layouts` is used as
-a layout for the templates in the subfolder of `views` that has the same name
-as the layout. For example, `articles/what-is-the-meaning-of-life.html.haml`
-will be rendered in the context of `layouts/articles.html.haml` provided
-that the latter has a placeholder for the former via the `yield` keyword.
+`application.html.haml` is used for rendering the root of your application (both
+`/` and `/index.html`). Second, any template in `layouts` is used as a layout
+for the templates in the subfolder of `views` that has the same name as the
+layout. For example, `articles/what-is-the-meaning-of-life.html.haml` will be
+rendered in the context of `layouts/articles.html.haml` provided that the latter
+has a placeholder for the former via the `yield` keyword.
 
 ### Configuration
 
@@ -134,12 +133,12 @@ module MyProject
 end
 ```
 
-If `config.compress` is not specified, it is implicitly set to
-`ENV['RAIL_ENV'] == 'production'`.
+If `config.compress` is not specified, it is implicitly set to `ENV['RAIL_ENV']
+== 'production'`.
 
 ### Commands
 
-Run [Rake](https://github.com/jimweirich/rake) to see the available tasks:
+Run [Rake][rake] to see the available tasks:
 
 ```bash
 rake -T
@@ -148,8 +147,7 @@ rake server  # Start server
 ```
 
 `rake server` starts up a Web server; if none is specified in `Gemfile`,
-[WEBrick](http://ruby-doc.org/stdlib-2.1.2/libdoc/webrick/rdoc/WEBrick.html)
-will be fired up.
+[WEBrick][webrick] will be fired up.
 
 `rake assets` compiles your assets and stores them in `public`. You should
 explicitly tell Rail what to compile as it was shown in the previous section.
@@ -159,12 +157,27 @@ delete the precompiled files when you change your code in `app`.
 ### Examples
 
 Additional usage examples can be found
-[here](https://github.com/IvanUkhov/opentype-works),
+[here](https://github.com/IvanUkhov/opentype),
 [here](https://github.com/IvanUkhov/photography), and
-[here](https://github.com/IvanUkhov/liu-profile).
+[here](https://github.com/IvanUkhov/research).
 
-## Contributing
+## Contribution
 
 1. Fork the project.
 2. Implement your idea.
 3. Open a pull request.
+
+[build-img]: https://travis-ci.org/IvanUkhov/rail.svg?branch=master
+[build-url]: https://travis-ci.org/IvanUkhov/rail
+[dependency-img]: https://gemnasium.com/IvanUkhov/rail.svg
+[dependency-url]: https://gemnasium.com/IvanUkhov/rail
+[version-img]: https://badge.fury.io/rb/rail.svg
+[version-url]: https://badge.fury.io/rb/rail
+
+[bundler]: http://bundler.io
+[coffeescript]: http://coffeescript.org
+[haml]: http://haml.info
+[rails]: http://rubyonrails.org
+[rake]: https://github.com/jimweirich/rake
+[sass]: http://sass-lang.com
+[webrick]: http://ruby-doc.org/stdlib-2.1.2/libdoc/webrick/rdoc/WEBrick.html
