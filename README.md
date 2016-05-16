@@ -178,6 +178,6 @@ Additional usage examples can be found
 [coffeescript]: http://coffeescript.org
 [haml]: http://haml.info
 [rails]: http://rubyonrails.org
-[rake]: https://github.com/jimweirich/rake
+[rake]: https://github.com/ruby/rake
 [sass]: http://sass-lang.com
 [webrick]: http://ruby-doc.org/stdlib-2.1.2/libdoc/webrick/rdoc/WEBrick.html
