@@ -1,4 +1,4 @@
-# Rail [![Gem Version][version-img]][version-url] [![Dependency Status][dependency-img]][dependency-url] [![Build Status][build-img]][build-url]
+# Rail [![Version][version-img]][version-url] [![Dependency Status][depend-img]][depend-url] [![Build Status][build-img]][build-url]
 
 A light framework for front-end development inspired by [Rails][rails]. The sole
 purpose of Rail is to compile assets, and it includes the following components:
@@ -169,8 +169,8 @@ Additional usage examples can be found
 
 [build-img]: https://travis-ci.org/IvanUkhov/rail.svg?branch=master
 [build-url]: https://travis-ci.org/IvanUkhov/rail
-[dependency-img]: https://gemnasium.com/IvanUkhov/rail.svg
-[dependency-url]: https://gemnasium.com/IvanUkhov/rail
+[depend-img]: https://gemnasium.com/IvanUkhov/rail.svg
+[depend-url]: https://gemnasium.com/IvanUkhov/rail
 [version-img]: https://badge.fury.io/rb/rail.svg
 [version-url]: https://badge.fury.io/rb/rail
 
