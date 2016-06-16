@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'coffee-script', '~> 2.4'
   spec.add_dependency 'haml', '~> 4.0'
   spec.add_dependency 'rack', '~> 1.6'
-  spec.add_dependency 'rake', '~> 0'
+  spec.add_dependency 'rake', '~> 11.2'
   spec.add_dependency 'sass', '~> 3.4'
   spec.add_dependency 'uglifier', '~> 3.0'
 
