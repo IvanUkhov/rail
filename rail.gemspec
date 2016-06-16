@@ -22,20 +22,15 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 1.9.3'
 
-  spec.add_dependency 'rake'
-
-  spec.add_dependency 'rack', '~> 1.5'
-
-  spec.add_dependency 'coffee-script', '~> 2.2'
+  spec.add_dependency 'coffee-script', '~> 2.4'
   spec.add_dependency 'haml', '~> 4.0'
-  spec.add_dependency 'sass', '~> 3.3'
+  spec.add_dependency 'rack', '~> 1.6'
+  spec.add_dependency 'rake', '~> 0'
+  spec.add_dependency 'sass', '~> 3.4'
+  spec.add_dependency 'uglifier', '~> 3.0'
 
-  spec.add_dependency 'uglifier', '~> 2.5'
-
-  spec.add_development_dependency 'bundler', '~> 1.6'
-
-  spec.add_development_dependency 'rspec', '~> 3.0'
-
-  spec.add_development_dependency 'guard', '~> 2.6'
-  spec.add_development_dependency 'guard-rspec', '~> 4.3'
+  spec.add_development_dependency 'bundler', '~> 1.12'
+  spec.add_development_dependency 'guard', '~> 2.14'
+  spec.add_development_dependency 'guard-rspec', '~> 4.7'
+  spec.add_development_dependency 'rspec', '~> 3.4'
 end
